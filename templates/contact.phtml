@@ -1,0 +1,135 @@
+<?php if ($flashMessage) : ?>
+    <div class="alert alert-success text-center pt-3 pb-4 m-0 rounded-bottom"><?= htmlspecialchars($flashMessage); ?></div>
+<?php endif; ?>
+<main class="container col col-lg-9">
+    <div class="container-fluid text-center pt-3 pb-2">
+        <h2 class="my-4">Contact</h2>
+        <div class="row my-5">
+            <div class="col-12 col-md-6 col-lg-6 img">
+                <img class=" ig-fluid" src="img/facade.jpg" alt="Façade du magasin L'Antre des Saveurs Dijon">
+            </div>
+            <div class="col-12 col-md-6 col-lg-6 text-start m-auto">
+                <div class="data ps-3">
+                    <h3 class="text-capitalize">L'Antre des saveurs</h3>
+                    <div class="content-text-contact">
+                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos, incidunt? Eum quis repellendus voluptas recusandae corrupti dolores omnis cupiditate maiores?</p>
+                        <p>Vous pouvez effectuer vos achats depuis notre site en ligne ou venir nous rendre visite en magasin aux horaires suivantes :</p>
+                        <ul>
+                            <li>Le lundi : 15h à 19h</li>
+                            <li>Du mardi au Samedi : 9h - 13h / 15h - 19h30</li>
+                            <li>Le dimanche : 9h - 13h / 16h - 19h</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <div class="col-12 col-lg-4 p-0">
+                <address class="data h-100 d-flex flex-column justify-content-evenly m-0 p-2">
+                    <div class="item">Adresse : <a class="w-75 text-center text-dark text-decoration-underline" href="https://www.google.com/maps?cid=3178154924029870296" target="_blank"><span>L'Antre des Saveurs, Rue de Dijon, </br> 21121 Fontaine-lès-Dijon</span></a></div>
+                    <div class="item">Tel : <a href="tel:+33380366014" class="text-dark text-decoration-underline"><span>03 80 36 60 14</span></a></div>
+                    <div class="item">Mail : <a href="mailto:contact@antredessaveurs.fr" class="text-dark text-decoration-underline"><span>contact@antredessaveurs.fr</span></a></div>
+                    <div class="item social">
+                        <p class="social">Réseaux sociaux :
+                            <a href="#"><i class="fa-brands fa-square-instagram"></i></a>
+                            <a href="https://www.facebook.com/profile.php?id=100069220646028"><i class="fa-brands fa-square-facebook"></i></a>
+                        </p>
+                    </div>
+                </address>
+            </div>
+            <div class="col-12 col-lg-8 p-0">
+                <div id="mapaddress" class="rounded d-flex flex-column justify-content-center align-items-center">
+                    <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3" class="w-100">
+                        <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
+                        <script>
+                            (function() {
+                                var setting = {
+                                    "query": "L'Antre des saveurs, 63 Rue de Dijon, Fontaine-lès-Dijon, France",
+                                    "width": 400,
+                                    "height": 250,
+                                    "satellite": false,
+                                    "zoom": 17,
+                                    "placeId": "ChIJjazK046d8kcR2ID1lxATGyw",
+                                    "cid": "0x2c1b131097f580d8",
+                                    "coords": [47.33364697337278, 5.026922074468909],
+                                    "lang": "fr",
+                                    "queryString": "63 Rue de Dijon, Fontaine-lès-Dijon, France",
+                                    "centerCoord": [47.33364697337278, 5.026922074468909],
+                                    "id": "map-9cd199b9cc5410cd3b1ad21cab2e54d3",
+                                    "embed_id": "986200"
+                                };
+                                var d = document;
+                                var s = d.createElement('script');
+                                s.src = 'https://1map.com/js/script-for-user.js?embed_id=986200';
+                                s.async = true;
+                                s.onload = function(e) {
+                                    window.OneMap.initMap(setting)
+                                };
+                                var to = d.getElementsByTagName('script')[0];
+                                to.parentNode.insertBefore(s, to);
+                            })();
+                        </script>
+                    </div>
+                    <!-- <a class="w-75 text-center text-dark text-decoration-underline" href="https://www.google.com/maps?cid=3178154924029870296" target="_blank">L'Antre des Saveurs, Rue de Dijon, </br> 21121 Fontaine-lès-Dijon</a>
+                    <p>Téléphone : <a href="tel:+33380366014" class="text-dark text-decoration-underline">03 80 36 60 14</a></p> -->
+                </div>
+            </div>
+        </div>
+
+        <div class="row my-5">
+            <form id="contact-form" class="d-flex justify-content-center" action="/contact" method="POST">
+                <fieldset class="col-12 m-auto p-3 rounded w-100">
+                    <legend>Laissez nous un message</legend>
+                    <!-- Name input -->
+                    <div class="row">
+                        <div class="col-12 col-lg-6 d-flex flex-column">
+                            <label class="form-label text-start" for="surname">Nom</label>
+                            <input value="<?= htmlspecialchars($surname); ?>" type="text" id="surname" name="surname" class="form-control" placeholder="Votre nom" />
+                            <?php if (isset($errors['surname'])) : ?>
+                                <p class="mt-1 alert alert-danger p-1"><?= htmlspecialchars($errors['surname']); ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-12 col-lg-6 d-flex flex-column">
+                            <label class="form-label text-start" for="nickname">Prénom</label>
+                            <input value="<?= htmlspecialchars($nickname); ?>" type="text" id="nickname" name="nickname" class="form-control" placeholder="Votre prénom" />
+                            <?php if (isset($errors['nickname'])) : ?>
+                                <p class="mt-1 alert alert-danger p-1"><?= htmlspecialchars($errors['nickname']); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+
+                    <!-- Email input -->
+                    <div class="col d-flex flex-column">
+                        <label class="form-label text-start" for="email">E-mail</label>
+                        <input value="<?= htmlspecialchars($email); ?>" type="email" id="email" name="email" class="form-control" placeholder="Votre E-mail" />
+                        <?php if (isset($errors['email'])) : ?>
+                            <p class="mt-1 alert alert-danger p-1"><?= htmlspecialchars($errors['email']); ?></p>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Message input -->
+                    <div class="col d-flex flex-column">
+                        <label class="form-label text-start" for="userMessage">Message</label>
+                        <textarea class="form-control" id="userMessage" name="userMessage" rows="4" placeholder="Votre message"><?= htmlspecialchars($userMessage); ?></textarea>
+                        <?php if (isset($errors['userMessage'])) : ?>
+                            <p class="mt-1 alert alert-danger p-1"><?= htmlspecialchars($errors['userMessage']); ?></p>
+                        <?php endif; ?>
+                    </div>
+
+                    <!-- Ce champ permet d'afficher le captcha de Google en utilisant la clé de site (la première des deux clés) -->
+                    <!-- <div class="g-recaptcha" data-sitekey="6LcqsfonAAAAAJ7pRKQ8ZlhO4aNDUIxBDwKd7Xbd"></div> -->
+
+                    <!-- Submit button -->
+                    <input type="submit" class="btn btn-dark mt-4 w-100 g-recaptcha" data-sitekey="6LcqsfonAAAAAAo0CGLPRTSvDOXRzxwBDQcSUh0X" data-callback="onSubmit" data-action='submit' value="Envoyer">
+                </fieldset>
+            </form>
+        </div>
+    </div>
+    </div>
+</main>
+<script>
+    function onSubmit(token) {
+        document.getElementById("contact-form").submit();
+    }
+</script>

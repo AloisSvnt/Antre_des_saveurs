@@ -1,0 +1,125 @@
+<main>
+    <!-- Affichage du message flash le cas échéant -->
+    <?php if ($flashMessage) : ?>
+        <div class="alert alert-success text-center pt-3 pb-4"><?= htmlspecialchars($flashMessage); ?></div>
+    <?php endif; ?>
+
+    <div class="w-100 pb-3">
+        <img src="img/facade.jpg" alt="Vitrine du commerce L'Antre des Saveurs" class="w-100 covered">
+    </div>
+
+    <div class="py-5 main-content">
+        <h1 class="text-center text-uppercase fs-2 py-2">L'Antre des Saveurs</h1>
+        <p class="text-center w-75 m-auto py-4">Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti magnam velit ipsa inventore tempora consequatur vel, exercitationem adipisci earum molestiae id et deleniti officiis provident soluta eligendi, iste autem! Veniam sunt aspernatur consequatur hic facere minus dolores adipisci? Doloremque tempore ab cum quas facilis quibusdam enim aliquam incidunt eaque consequuntur dolorum modi quisquam voluptatibus asperiores aspernatur, ipsam iste numquam perspiciatis ullam mollitia tempora suscipit? Voluptatibus voluptas, quisquam nulla repellendus dolor cumque! Eligendi eveniet architecto et. Iste architecto nobis adipisci esse repellat, quis consequatur suscipit ut aliquid enim id distinctio dicta. Iure commodi reiciendis dolores sapiente tempore consequuntur optio perferendis doloribus quod minus, dicta quidem omnis aliquam unde ab nam molestias sint eaque maxime expedita. Reiciendis dignissimos velit iure a minus quis dolore nam, nostrum fuga expedita esse nemo odio totam quibusdam aliquam. Unde voluptatem iusto laudantium, quidem reprehenderit consectetur voluptate possimus eum doloribus numquam eveniet, ex at eaque, fugit autem?</p>
+    </div>
+
+    <section id="spotlight" class="my-3 py-5">
+        <div class="w-75 m-auto d-flex flex-column">
+            <h2 class="text-center text-uppercase fs-2 p-1">Notre sélection</h2>
+            <div class="d-flex flex-wrap justify-content-evenly">
+                <?php foreach ($articles as $article) : ?>
+                    <?php if ($article->getArticleSpotlight() === 1) : ?>
+                        <div class="col-10 col-sm-4 col-md-3 text-center border p-1 d-flex flex-column justify-content-between ">
+                            <div class="image-zoom">
+                                <img src="<?php echo htmlspecialchars($article->getArticleImage()) ?>" alt="" class="w-100">
+                            </div>
+                            <h3 class="fs-5">
+                                <?php echo htmlspecialchars($article->getArticleName()) ?></h3>
+                            <div class="d-flex justify-content-evenly">
+                                <p>Quantité : <?php echo htmlspecialchars($article->getArticleQuantity()) ?></p>
+                                <p>Prix : <?php echo htmlspecialchars(number_format($article->getArticlePrice(), 2, ',', ' ')) ?> €</p>
+                            </div>
+                            <a href="/article?id=<?= intval($article->getArticleId()) ?>" class="align-self-baseline btn btn-dark w-100" data-mdb-toggle="tooltip" title="Voir l'article">Voir</a>
+                        </div>
+                    <?php endif; ?>
+                <?php endforeach; ?>
+            </div>
+            <h3 class="text-center m-auto mt-5"><a href="/boutique" class=" btn btn-dark">Visiter notre boutique !</a></h3>
+        </div>
+    </section>
+
+    <section>
+        <address class="d-flex justify-content-evenly flex-wrap align-items-center py-5">
+            <div class="col-10 col-md-4 d-flex flex-column justify-content-center mb-3">
+                <div id="mapaddress" class="rounded d-flex flex-column justify-content-center align-items-center">
+                    <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3" class="w-100">
+                        <div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div>
+                        <script>
+                            (function() {
+                                var setting = {
+                                    "query": "L'Antre des saveurs, 63 Rue de Dijon, Fontaine-lès-Dijon, France",
+                                    "width": 400,
+                                    "height": 250,
+                                    "satellite": false,
+                                    "zoom": 17,
+                                    "placeId": "ChIJjazK046d8kcR2ID1lxATGyw",
+                                    "cid": "0x2c1b131097f580d8",
+                                    "coords": [47.33364697337278, 5.026922074468909],
+                                    "lang": "fr",
+                                    "queryString": "63 Rue de Dijon, Fontaine-lès-Dijon, France",
+                                    "centerCoord": [47.33364697337278, 5.026922074468909],
+                                    "id": "map-9cd199b9cc5410cd3b1ad21cab2e54d3",
+                                    "embed_id": "986200"
+                                };
+                                var d = document;
+                                var s = d.createElement('script');
+                                s.src = 'https://1map.com/js/script-for-user.js?embed_id=986200';
+                                s.async = true;
+                                s.onload = function(e) {
+                                    window.OneMap.initMap(setting)
+                                };
+                                var to = d.getElementsByTagName('script')[0];
+                                to.parentNode.insertBefore(s, to);
+                            })();
+                        </script>
+                    </div>
+                    <a class="w-75 text-center text-dark text-decoration-underline" href="https://www.google.com/maps?cid=3178154924029870296" target="_blank">L'Antre des Saveurs, Rue de Dijon, </br> 21121 Fontaine-lès-Dijon</a>
+                    <p>Téléphone : <a href="tel:+33380366014" class="text-dark text-decoration-underline">03 80 36 60 14</a></p>
+                </div>
+            </div>
+            <div class="card col-10 col-md-6 col-xl-3 border-0">
+                <div class="card-header border-bottom-0">
+                    <div class="d-flex">
+                        <div class="w-100">
+                            <p class="today text-uppercase">Aujourd'hui</p>
+                            <h4 class="fw-bolder fs-2">Heures d'ouverture</h4>
+                        </div>
+                        <i class="fa-regular fa-clock m-auto"></i>
+                    </div>
+                </div>
+                <table>
+                    <tbody>
+                        <tr id="Monday" class='<?php if ($today == "Monday") echo ('today'); ?> border-top'>
+                            <th class="p-3">Lundi</th>
+                            <td class="text-end p-2 pe-3">15h - 19h</td>
+                        </tr>
+                        <tr id="Tuesday" class='<?php if ($today == "Tuesday") echo ('today'); ?> border-top'>
+                            <th class="p-3">Mardi</th>
+                            <td class="text-end p-2 pe-3">9h - 13h<br>15h - 19h30</td>
+                        </tr>
+                        <tr id="Wednesday" class='<?php if ($today == "Wednesday") echo ('today'); ?> border-top'>
+                            <th class="p-3">Mercredi</th>
+                            <td class="text-end p-2 pe-3">9h - 13h<br>15h - 19h30</td>
+                        </tr>
+                        <tr id="Thursday" class='<?php if ($today == "Thursday") echo ('today'); ?> border-top'>
+                            <th class="p-3">Jeudi</th>
+                            <td class="text-end p-2 pe-3">9h - 13h<br>15h - 19h30</td>
+                        </tr>
+                        <tr id="Friday" class='<?php if ($today == "Friday") echo ('today'); ?> border-top'>
+                            <th class="p-3">Vendredi</th>
+                            <td class="text-end p-2 pe-3">9h - 13h<br>15h - 19h30</td>
+                        </tr>
+                        <tr id="Saturday" class='<?php if ($today == "Saturday") echo ('today'); ?> border-top'>
+                            <th class="p-3">Samedi</th>
+                            <td class="text-end p-2 pe-3">9h - 13h<br>15h - 19h30</td>
+                        </tr>
+                        <tr id="Sunday" class='<?php if ($today == "Sunday") echo ('today'); ?> border-top'>
+                            <th class="p-3">Dimanche</th>
+                            <td class="text-end p-2 pe-3">9h - 13h<br>16h - 19h</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </address>
+    </section>
+</main>

@@ -1,0 +1,26 @@
+<main class="container customer-account d-flex flex-column justify-content-center">
+    <div class="row text-center pt-3 pb-2">
+        <h2 class="my-4">Mon compte <br>(<?php echo $_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname'] ?>)</h2>
+    </div>
+
+    <div class="row d-flex flex-wrap justify-content-evenly align-items-center pt-3 mb-5 gap-3 ">
+        <a href="/commandes" class="card-perso col-9 col-md-5 col-xl-4 mask-custom rounded-3 h-100">
+            <div class="p-2 text-center">
+                <h3 class="fs-4"><i class="fa-solid fa-box-open px-2"></i>Vos commandes</h3>
+                <p class="m-0">Historique de vos achats</p>
+            </div>
+        </a>
+        <a href="/panier" class="card-perso col-9 col-md-5 col-xl-4 mask-custom rounded-3 h-100">
+            <div class="p-2 text-center">
+                <h3 class="fs-4"><i class="fa-solid fa-box-open px-2"></i>Votre panier</h3>
+                <p class="m-0">Votre panier en cours</p>
+            </div>
+        </a>
+        <a href="/connexion-securite" class="card-perso col-9 col-md-5 col-xl-4 mask-custom rounded-3">
+            <div class="p-2 text-center">
+                <h3 class="fs-4"><i class="fa-solid fa-shield-halved px-2"></i>Connexion et sécurité</h3>
+                <p class="m-0">Modifier vos informations personnelle</p>
+            </div>
+        </a>
+    </div>
+</main>

@@ -1,0 +1,72 @@
+<main class="container-fluid bg-article">
+    <div class="container">
+        <nav class="fil-d-ariane pt-3 fs-6">
+            <span>
+                <i class="fa-solid fa-chevron-right"></i>
+                <a class="fs-6" href="/boutique">Boutique</a> /
+                <span class="text-decoration-underline">
+                    <?php if (isset($article['article_name'])) {
+                        echo htmlspecialchars($article['article_name']);
+                    } ?>
+                </span>
+            </span>
+        </nav>
+    </div>
+    <?php if (!isset($errors['introuvable'])) : ?>
+        <div class="container d-flex flex-wrap justify-content-center py-5">
+            <div class="col-10 col-lg-6 m-auto">
+                <div class="image-zoom">
+                    <img src="<?php echo htmlspecialchars($article['article_image']) ?>" alt="photo de : <?php echo htmlspecialchars($article['article_name']) ?>" class="img-fluid">
+                </div>
+            </div>
+            <div class="col-10 col-lg-6">
+                <div class="h-100 py-3 px-5 d-flex flex-column justify-content-between">
+                    <h2 class="mb-4"><?php echo htmlspecialchars($article['article_name'])  ?></h2>
+                    <p class="fs-6 mb-2"><span class="fs-5 text-decoration-underline">Descriptif : </span><br><?php echo htmlspecialchars($article['article_description']) ?></p>
+                    <p class="fs-5 mb-2"><span class="text-decoration-underline fs-5">Origine</span> : <?php echo htmlspecialchars($article['native_country_name']) ?></p>
+                    <div class="d-flex flex-wrap text-center">
+                        <p class="<?= ($article['article_quantity'] > 0) ? ('quantityUp') : ('quantityDown'); ?> p-1 m-0 col-6 fs-5 rounded">Quantité : <?php echo htmlspecialchars($article['article_quantity']) ?></p>
+                        <?php if ($article['category_id'] !== 4) : ?>
+                            <p class="m-0 col-6 fs-5">Prix : <?php echo htmlspecialchars(number_format($article['article_price'], 2, ',', ' ')) ?> €/KG</p>
+                        <?php else : ?>
+                            <p class="m-0 col-6 fs-5">Prix : <?php echo htmlspecialchars($article['article_quantity']) ?> €</p>
+                        <?php endif; ?>
+                    </div>
+                    <?php if ($article['article_quantity'] !== 0) : ?>
+                        <div class="pt-3">
+                            <form id="article-form" class="d-flex flex-wrap" action="/article?id=<?= intval($articleId) ?>" method="POST">
+                                <select name="articleQuantityToAdd" class="form-select col" aria-label="Default select example">
+                                    <?php for ($i = 0; $i < $article['article_quantity']; $i++) {
+                                        echo ('<option value="' . $i + 1 . '"> ' . $i + 1 . ' </option>');
+                                    }
+                                    ?>
+                                </select>
+                                <?php if (isConnected()) : ?>
+                                    <input type="submit" value="Ajouter au panier" class="col-12 col-md-9 col-lg-10 btn btn-dark g-recaptcha" data-sitekey="6LcqsfonAAAAAAo0CGLPRTSvDOXRzxwBDQcSUh0X" data-callback="onSubmit" data-action='submit'></input>
+                                <?php else : ?>
+                                    <a href="/login" class="col-12 col-md-9 col-lg-10 btn btn-dark">Ajouter au panier</a>
+                                <?php endif; ?>
+                            </form>
+                        </div>
+                    <?php endif; ?>
+                </div>
+            </div>
+        </div>
+    <?php else : ?>
+        <div class="d-flex flex-wrap">
+            <div class=" unknown col-10 col-lg-6 d-flex flex-md-row justify-content-center align-items-center">
+                <i class="fa-solid fa-question"></i>
+            </div>
+            <div class="unknown d-flex flex-column justify-content-center align-items-start col-10 col-lg-6 d-flex">
+                <p class="m-0"><?php echo htmlspecialchars($errors['introuvable']); ?></p>
+                <a class="btn btn-dark" href="/boutique">Retour à la boutique</a>
+
+            </div>
+        </div>
+    <?php endif; ?>
+</main>
+<script>
+    function onSubmit(token) {
+        document.getElementById("article-form").submit();
+    }
+</script>

@@ -1,0 +1,7 @@
+    <?php if (!isset($_SESSION['admin'])) : ?>
+        <?php header('Location: /');
+        exit() ?>
+    <?php endif; ?>
+    <?php if ($flashMessage) : ?>
+        <div class="alert alert-success text-center pt-3 pb-4"><?= htmlspecialchars($flashMessage); ?></div>
+    <?php endif; ?>

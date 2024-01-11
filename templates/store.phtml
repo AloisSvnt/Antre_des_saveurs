@@ -1,0 +1,35 @@
+<main>
+    <div class="text-center pt-3 pb-2">
+        <h2 class="my-4">Boutique</h2>
+    </div>
+
+
+    <div class="container d-flex">
+        <!-- <div class="row display-sm-none col-sm-2">
+        left
+    </div> -->
+        <div class="d-flex flex-wrap mb-5">
+            <?php foreach ($articles as $article) : ?>
+
+                <?php if ($article->getArticleIsActive() === 1) : ?>
+                    <div class="block-article col-12 col-sm-6 col-md-4 text-center border p-1 d-flex flex-column justify-content-between ">
+                        <div class="image-zoom">
+                            <img src="<?php echo htmlspecialchars($article->getArticleImage()) ?>" alt="photo de : <?php echo htmlspecialchars($article->getArticleName()) ?>" class="img-fluid">
+                        </div>
+                        <h3 class="fs-5">
+                            <?php echo htmlspecialchars($article->getArticleName()) ?></h3>
+                        <p class="fs-6">
+                            <?php echo htmlspecialchars(substr($article->getArticleDescription(), 0, 110)) ?>...
+                        </p>
+                        <div class="d-flex justify-content-evenly">
+                            <p class="fs-6">Quantité : <?php echo htmlspecialchars($article->getArticleQuantity()) ?></p>
+                            <p class="fs-6">Prix : <?php echo (number_format($article->getArticlePrice(), 2, ',', ' ')) ?> €</p>
+                        </div>
+                        <a href="/article?id=<?= intval($article->getArticleId()) ?>" class="align-self-baseline btn btn-dark w-100" data-mdb-toggle="tooltip" title="Voir l'article">Voir</a>
+                    </div>
+                <?php endif ?>
+
+            <?php endforeach; ?>
+        </div>
+    </div>
+</main>

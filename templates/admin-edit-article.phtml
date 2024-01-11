@@ -1,0 +1,104 @@
+<?php if (!isset($_SESSION['admin'])) : ?>
+    <?php dump($_SESSION) ?>
+    <?php header('Location: /');
+    exit() ?>
+<?php else : ?>
+
+
+    <main class="container-fluid p-0 mb-5">
+
+        <div class="text-center pt-3 d-flex flex-column justify-content-center">
+            <h2 class="my-4">Édition de l'article : </h2>
+        </div>
+
+        <div class="card-body col-10 m-auto">
+            <form id="admin-add-article" action="/admin-panel/articles/edit?id=<?= intval($articleId) ?>" method="POST">
+                <fieldset>
+                    <div class="mb-3 form-group">
+                        <label for="name">Nom de l'article</label>
+                        <input value="<?= htmlspecialchars($articleName); ?>" type="text" name="name" class="form-control" id="name" placeholder="Nom de l'article">
+                        <?php if (isset($errors['name'])) : ?>
+                            <p class="mt-3 alert alert-danger"><?= htmlspecialchars($errors['name']); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label for="description">Description</label>
+                        <textarea rows="4" name="description" class="form-control" id="description" placeholder="Description de l'article"><?= htmlspecialchars($articleDescription); ?></textarea>
+                        <?php if (isset($errors['description'])) : ?>
+                            <p class="mt-3 alert alert-danger"><?= htmlspecialchars($errors['description']); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="mb-3 form-group d-flex justify-content-between">
+                        <div class="col-5">
+                            <label for="quantity">Quantité</label>
+                            <input type="number" name="quantity" class="form-control" id="quantity" placeholder="Le nombre d'article en stock" value="<?= htmlspecialchars($articleQuantity); ?>"></input>
+                            <?php if (isset($errors['quantity'])) : ?>
+                                <p class="mt-3 alert alert-danger"><?= htmlspecialchars($errors['quantity']); ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-5">
+                            <label for="price">Prix (€)</label>
+                            <input type="number" step="0.01" name="price" class="form-control" id="price" placeholder="Le prix de l'article (au kilo et sans le sigle €)" value="<?= htmlspecialchars($articlePrice); ?>"></input>
+                            <?php if (isset($errors['price'])) : ?>
+                                <p class="mt-3 alert alert-danger"><?= htmlspecialchars($errors['price']); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="mb-3 form-group d-flex justify-content-between">
+                        <div class="col-5">
+                            <label for="nativeCountry">Pays d'origine</label>
+                            <select name="nativeCountry" class="form-control" id="nativeCountry">
+                                <?php foreach ($nativeCountries as $nC) : ?>
+                                    <?php $selected = $nativeCountry == $nC['ID'] ? 'selected' : ''; ?>
+                                    <option <?= $selected; ?> value="<?= intval($nC['ID']) ?>"><?= htmlspecialchars($nC['name']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <?php if (isset($errors['nativeCountry'])) : ?>
+                                <p class="mt-3 alert alert-danger"><?= htmlspecialchars($errors['nativeCountry']); ?></p>
+                            <?php endif; ?>
+                        </div>
+                        <div class="col-5">
+                            <label for="category">Catégorie</label>
+                            <select name="category" class="form-control" id="category">
+                                <?php foreach ($categories as $c) : ?>
+                                    <?php $selected = $category == $c['ID'] ? 'selected' : ''; ?>
+                                    <option <?= $selected; ?> value="<?= intval($c['ID']) ?>"><?= htmlspecialchars($c['name']) ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                            <?php if (isset($errors['category'])) : ?>
+                                <p class="mt-3 alert alert-danger"><?= htmlspecialchars($errors['category']); ?></p>
+                            <?php endif; ?>
+                        </div>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label for="arrivalDate">Date de réception</label>
+                        <input value="<?= htmlspecialchars($articleArrivalDate); ?>" type="date" class="form-control" name="arrivalDate" id="arrivalDate">
+                        <?php if (isset($errors['arrivalDate'])) : ?>
+                            <p class="mt-3 alert alert-danger"><?= htmlspecialchars($errors['arrivalDate']); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label for="imageArticle">Image de l'article</label>
+                        <textarea rows="4" name="articleImage" class="form-control" id="articleImage" placeholder="lien vers une image" required> <?= htmlspecialchars($articleImage); ?></textarea>
+                        <?php if (isset($errors['articleImage'])) : ?>
+                            <p class="mt-3 alert alert-danger"><?= htmlspecialchars($errors['articleImage']); ?></p>
+                        <?php endif; ?>
+                    </div>
+                    <div class="mb-3 form-group d-flex justify-content-center">
+                        <div class="form-check form-switch col-5">
+                            <label class="form-check-label" for="articleSpotlight">Mettre en avant</label>
+                            <input class="form-check-input mx-2" name="articleSpotlight" type="checkbox" value="1" id="articleSpotlight" role="switch" <?php if ($articleSpotlight === 1) echo 'checked' ?>>
+                        </div>
+                        <div class="form-check form-switch col-5">
+                            <label class="form-check-label" for="articleIsActive">Activer sur le site</label>
+                            <input class="form-check-input mx-2" name="articleIsActive" type="checkbox" value="<?= $articleIsActive ?>" id="articleIsActive" role="switch" checked>
+                        </div>
+                    </div>
+                    <div class="form-group d-flex justify-content-end">
+                        <input class="w-25 fs-5 btn btn-dark mt-4 p-3" type="submit" value="Enregistrer">
+                    </div>
+                </fieldset>
+            </form>
+        </div>
+    </main>
+<?php endif; ?>

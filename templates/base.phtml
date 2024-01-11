@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $titlePage ?></title>
+    <link rel="shortcut icon" href="../../../../img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../../../css/normalize.css">
+    <link rel="stylesheet" href="../../../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+
+<body>
+    <div class="min-vh-100 d-flex flex-column justify-content-between">
+        <div class="container-fluid h-100 w-100">
+            <div class="row d-flex justify-content-center">
+                <div class="col-12 p-0">
+                    <header class="mask-custom">
+                        <div id="title" class="card-body pt-2 text-white d-flex flex-column flex-sm-rox justify-content-around  align-items-center">
+                            <div class="text-center pt-2 pb-2 d-flex flex-column flex-sm-row align-items-center">
+                                <a href="/">
+                                    <img src="../../../img/logo_AdS.webp" alt="Check" width="75">
+                                </a>
+                                <span class="ps-2 my-2 title-font-1 w-100">L'Antre des saveurs</span>
+                            </div>
+
+                            <nav id="stickyNav" class="m-0 pt-1 pb-2 text-center w-100 d-flex flex-wrap justify-content-center align-self-start navbar navbar-expand-md navbar-dark">
+                                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                </button>
+                                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                                    <ul class="my-1 list-unstyled w-75 d-flex flex-column flex-md-row flex-wrap justify-content-evenly align-self-start m-auto">
+                                        <li class="w-sm-auto flex-grow-1 flex-sm-grow-0">
+                                            <a href="/" class=" btn mx-1">
+                                                <i class="fa-solid fa-home"></i>
+                                                Accueil
+                                            </a>
+                                        </li>
+
+                                        <li class="w-sm-auto flex-grow-1 flex-sm-grow-0">
+                                            <a href="/boutique" class="btn mx-1">
+                                                <i class="fa-solid fa-shop"></i>
+                                                Boutique
+                                            </a>
+                                        </li>
+
+                                        <!-- MENU EN MODE CONNECTE -->
+                                        <?php if (isConnected()) : ?>
+                                            <li class="w-sm-auto flex-grow-1 flex-sm-grow-0">
+                                                <a href="/mon-compte" class="btn mx-1">
+                                                    <i class="fa-solid fa-user"></i>
+                                                    <?php echo ($_SESSION['user']['firstname'] . ' ' . $_SESSION['user']['lastname']) ?>
+                                                </a>
+                                            </li>
+                                            <li class="w-sm-auto flex-grow-1 flex-sm-grow-0">
+                                                <a href="/panier" class="btn mx-1">
+                                                    <i class="fa-solid fa-cart-shopping"></i>
+                                                    Panier
+                                                    <span class="badge rounded-5"><?php echo countArticleInShoppingCart() ?></span>
+                                                </a>
+                                            </li>
+                                            <li class="w-sm-auto flex-grow-1 flex-sm-grow-0">
+                                                <a href="/logout" class="btn mx-1">
+                                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                                    Déconnexion
+                                                </a>
+                                            </li>
+                                        <?php else : ?>
+                                            <!-- MENU EN MODE NON CONNECTE -->
+                                            <li class="w-sm-auto flex-grow-1 flex-sm-grow-0">
+                                                <a href="/signup" class="btn mx-1">
+                                                    <i class="fa-solid fa-user-plus"></i>
+                                                    Créer un compte
+                                                </a>
+                                            </li>
+                                            <li class="w-sm-auto flex-grow-1 flex-sm-grow-0">
+                                                <a href="/login" class="btn mx-1">
+                                                    <i class="fa-solid fa-right-to-bracket"></i>
+                                                    Connexion
+                                                </a>
+                                            </li>
+                                        <?php endif; ?>
+                                    </ul>
+                                </div>
+                            </nav>
+
+                        </div>
+                    </header>
+                </div>
+            </div>
+        </div>
+        <!-- inclusion du template spécifique à la page affichée -->
+        <?php include '../templates/' . $template . '.phtml'; ?>
+
+        <footer class="align-content-end">
+            <section class="mask-custom">
+                <div class="d-flex justify-content-evenly container flex-wrap">
+                    <div class="col-10 col-md-6">
+
+                        <nav class="d-flex flex-column align-items-center p-2">
+                            <ul class="list-unstyled m-0 pe-4 pb-3 border-end w-100">
+                                <p class="fs-5 text-uppercase text-center">Informations</p>
+                                <li class="py-1 text-center">
+                                    <a class="" href="/contact">Contact</a>
+                                </li>
+                                <li class="py-1 text-center">
+                                    <a class="/conditions-generales-de-vente-et-dutilisation" href="/conditions-generales-de-vente-et-dutilisation">CGUV</a>
+                                </li>
+                                <li class="py-1 text-center">
+                                    <a class="" href="/politique-de-confidentialite">Confidentialité</a>
+                                </li>
+                                <li class="py-1 text-center">
+                                    <a class="" href="/mentions-legales">Mentions légales</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                    <div class="col-10 col-md-6">
+                        <nav class="d-flex flex-column align-items-center p-2">
+                            <ul class="list-unstyled m-0 pe-4 pb-3 w-100">
+                                <p class="fs-5 text-uppercase text-center">Mon Compte</p>
+                                <?php if (isConnected()) : ?>
+                                    <li class="py-1 text-center">
+                                        <a class="" href="/mon-compte">Mon compte</a>
+                                    </li>
+                                    <li class="py-1 text-center">
+                                        <a class="" href="/panier">Mon panier</a>
+                                    </li>
+                                    <li class="py-1 text-center">
+                                        <a class="" href="/commandes">Mes commandes</a>
+                                    </li>
+                                <?php else : ?>
+                                    <li class="py-1 text-center">
+                                        <a class="" href="/signup">Créer un compte</a>
+                                    </li>
+                                    <li class="py-1 text-center">
+                                        <a class="" href="/login">Se connecter</a>
+                                    </li>
+                                <?php endif; ?>
+                                <!-- <li class="py-1 text-center">
+                                    <a class="" href="/mentions-legales">Mentions légales</a>
+                                </li> -->
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="text-center">Créé et propulsé par <a class="text-decoration-underline text-secondary" href="#">Aloïs SAUVONNET</a></div>
+            </section>
+        </footer>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js" integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

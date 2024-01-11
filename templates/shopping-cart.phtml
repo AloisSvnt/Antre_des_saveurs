@@ -1,0 +1,55 @@
+<main class="container py-5 privacy-policy">
+    <div class="text-center pb-4">
+        <h2 class="">Votre panier</h2>
+    </div>
+
+    <?php if (isset($_SESSION['shoppingCart'])) : ?>
+        <div class="row">
+            <table class="table">
+                <thead>
+                    <tr class="text-center">
+                        <th scope="col"></th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix/u</th>
+                        <th scope="col">Total</th>
+                        <th scope="col"></th>
+                    </tr>
+                </thead>
+                <?php for ($i = 0; $i < $numberOfArticle; $i++) : ?>
+                    <tbody>
+                        <tr class="text-center">
+                            <th scope="row">
+                                <img class="img-fluid" src="<?php echo ($articles['article_' . $i . '']['article_image']) ?>" alt="">
+                            </th>
+                            <td>
+                                <?php echo htmlspecialchars($articles['article_' . $i . '']['article_name']) ?>
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars($articles['article_' . $i . '']['quantity']) ?>
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars(number_format($articles['article_' . $i . '']['price'], 2, ',', ' ')) ?> €
+                            </td>
+                            <td>
+                                <?php echo htmlspecialchars(number_format($articles['article_' . $i . '']['quantity'] * $articles['article_' . $i . '']['price'], 2, ',', ' ')) ?> €
+                            </td>
+                            <td><a class="text-danger" href="/panier?id=<?php echo $articles['article_' . $i . '']['article_id'] ?>"><i class="fa-solid fa-xmark"></i></a></td>
+                        </tr>
+                    </tbody>
+                <?php endfor; ?>
+                <tbody>
+                    <tr class="text-center">
+                        <th></th>
+                        <td></td>
+                        <td></td>
+                        <td class="fs-4 fw-bold">Total :</td>
+                        <td class="fs-4 fw-bold"><?php echo htmlspecialchars(number_format(shoppingCartAmount(), 2, ',', ' ')) ?> €</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+    <?php endif; ?>
+
+</main>

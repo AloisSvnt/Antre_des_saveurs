@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title><?php echo $titlePage ?></title>
+    <link rel="shortcut icon" href="../../../../img/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="../../../css/normalize.css">
+    <link rel="stylesheet" href="../../../css/style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css">
+</head>
+
+<body class="min-vh-100 d-flex flex-column justify-content-between">
+
+    <header class="container-fluid h-100 w-100">
+        <div class="row d-flex justify-content-center">
+            <div class="col-12 p-0">
+                <div class="mask-custom admin">
+                    <div id="admin" class="card-body pt-2 text-white d-flex flex-column flex-sm-rox justify-content-around  align-items-center">
+                        <div class="text-center pt-2 pb-2 d-flex flex-column flex-sm-row align-items-center">
+                            <a href="/admin-panel">
+                                <img src="../../../../img/logo_AdS.webp" alt="Check" width="75">
+                            </a>
+                            <span class="ps-2 my-2 title-font-1 w-100">L'Antre des saveurs</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <?php if (isset($_SESSION['admin'])) : ?>
+        <main class="d-flex admin-panel">
+            <div class="col-2">
+                <nav class="h-100">
+                    <ul class="list-unstyled d-flex flex-column m-0 h-100">
+                        <li class="p- text-center">
+                            <span class="text-uppercase text-light">Admin : <?php echo $_SESSION['admin']['firstname'] ?> <?php echo $_SESSION['admin']['lastname'] ?></span>
+                        </li>
+                        <li class="p-4">
+                            <a href="/admin-panel">
+                                <i class="fa-solid fa-house"></i>
+                                Panneau d'administration
+                            </a>
+                        </li>
+                        <li class="p-4">
+                            <a href="/admin-panel/articles">
+                                <i class="fa-solid fa-apple-whole"></i>
+                                Produits
+                            </a>
+                        </li>
+                        <li class="p-4 text-light">
+                            <a href="">
+                                <!-- <a href="/admin-panel/admin-clients"> -->
+                                <i class="fa-solid fa-users"></i>
+                                Clients
+                            </a>
+                        </li>
+                        <li class="p-4">
+                            <a href="">
+                                <!-- <a href="/admin-panel/admin-commands"> -->
+                                <i class="fa-solid fa-box-open"></i>
+                                Commandes
+                            </a>
+                        </li>
+                        <li class="p-4">
+                            <a href="/">
+                                <i class="fa-solid fa-shop"></i>
+                                Le site
+                            </a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        <?php endif; ?>
+
+        <div class="w-100">
+            <!-- inclusion du template spécifique à la page affichée -->
+            <?php include '../templates/' . $template . '.phtml'; ?>
+        </div>
+        </main>
+
+        <footer class="align-content-end">
+        </footer>
+        </div>
+
+</html>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.1/js/bootstrap.min.js" integrity="sha512-fHY2UiQlipUq0dEabSM4s+phmn+bcxSYzXP4vAXItBvBHU7zAM/mkhCZjtBEIJexhOMzZbgFlPLuErlJF2b+0g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://www.google.com/recaptcha/api.js" async defer></script>
+<script src="../../js/script.js"></script>
+</body>

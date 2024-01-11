@@ -1,0 +1,424 @@
+@font-face {
+    font-family: 'Roboto-Regular';
+    src:
+        url('../fonts/Roboto-Regular.ttf');
+}
+
+*{
+    font-family: Calibri, Arial, Helvetica, sans-serif;
+    font-size: 1.1rem;
+}
+
+div.alert{
+    border-radius: 0 0 12px 12px!important;
+}
+
+.mask-custom {
+    background: rgba(77, 67, 49,1);
+    /* border-radius: 0 0 2em 2em; */
+    /* backdrop-filter: opacity(1%); */
+    /* border: 2px solid rgba(255, 255, 255, 0.05); */
+    /* background-clip: padding-box; */
+    box-shadow: 10px 10px 10px rgba(46, 54, 68, 0.03);
+    
+    color: #cac3b7!important;
+    
+}
+
+.mask-custom.admin, nav.admin{
+    background: rgb(91, 22, 182);
+}
+
+
+a {
+    text-decoration: none!important;
+}
+
+.title-font-1{
+    font-family: Calibri!important;
+    text-transform: capitalize;
+    color: #cac3b7;
+    font-size: 1.7rem;
+}
+
+.btn-dark{
+    background-color: #4d4331!important;
+    color: #ebed31!important;
+    border: none!important;
+}
+
+.btn-dark:hover{
+    transform: translateY(-1px);
+    box-shadow: inset 0 -2px 0 0 #0000005e;
+    border-color: transparent!important;
+    transition: all 0.2s cubic-bezier(.4,0,.2,1);
+}
+
+.text-address{
+    color: #97991f!important;
+}
+
+a.text-secondary{
+    color: #cac3b7!important;
+}
+
+form#login-form fieldset, form#signup-form fieldset, form#contact-form fieldset{
+    background-color: #a5a097;
+    min-width: 330px!important;
+    max-width: 700px!important;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3) !important;
+}
+
+form#admin-login-form fieldset{
+    color: #fff;
+    background-color: #664cce;
+    min-width: 330px!important;
+    max-width: 700px!important;
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.3) !important;
+}
+
+
+form#admin-login-form fieldset .btn-dark, form#admin-add-article fieldset .btn-dark{
+    background-color: #341c91!important;
+    color: #fff!important;
+}
+
+nav {
+    background: rgba(77, 67, 49,1);
+}
+
+nav.fil-d-ariane{
+    background-color: transparent;
+}
+
+nav.fil-d-ariane a{
+    color: black!important;
+}
+nav.fil-d-ariane a:hover{
+    color: #bfc21e!important;
+}
+
+nav a, section.mask-custom {
+    flex: 1 4 150px;
+    box-sizing: content-box;
+    
+    color: #cac3b7!important;
+}
+
+nav a:hover{
+    color: #FFF!important;
+}
+
+nav a:active{
+    background-color: transparent!important;
+    border-color: transparent!important;
+}
+
+#title {
+    min-height: 150px;
+}
+
+nav#stickyNav ul li a span{
+    position: absolute;
+    top: -6px;
+    right: -6px;
+    background-color: #bfc21ec5;
+    transition: all 0.5s cubic-bezier(.39,.58,.57,1);
+}
+
+nav#stickyNav ul li a span:hover{
+    transform: rotate(360deg);
+}
+
+.sticky {
+    z-index: 10000;
+    position: fixed!important;
+    top: 0!important;
+    /* padding-top: 60px; */
+}
+
+h1.text-center{
+    position: relative;
+}
+
+h1::before{
+    position: absolute;
+    left: 0;
+    width: 25%;
+    height: 5px;
+    content: "";
+    background-color: #ebed31;
+}
+h1::after{
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    width: 25%;
+    height: 5px;
+    content: "";
+    background-color: #ebed31;
+}
+
+section#spotlight{
+    background-color: #4d433109;
+}
+
+section address div.card, section address div#mapaddress, div.row div address.data{
+    box-shadow: 0 0 1rem rgba(0, 0, 0, 0.15) !important;
+}
+
+div p.today{
+    color: #e5e920;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin-bottom: -15px;
+}
+
+tr.today{
+    background-color: #e5e92080;
+}
+
+i.fa-clock{
+    font-size: 3.3rem;
+    opacity: 0.3;
+}
+
+
+main div div div img{
+    width: 100%;
+    height: 100%;
+    min-height: 450px;
+    object-fit: cover;
+    object-position: center;
+}
+
+div.image-zoom img:hover{
+    transform: scale(1.15);
+    transition: all 0.4s ease-out;
+}
+
+div.image-zoom{
+    overflow:hidden;
+}
+
+
+div.content-text-contact ul{
+    margin-top: -16px;
+}
+
+p.social{
+    margin-bottom: 0;
+}
+
+p.social a i{
+    color: #ebed31;
+    font-size: 2rem;
+    transition: all 0.5s ease;
+}
+
+p.social a i:hover {
+    color: #97991f;
+}
+
+ul.list-unstyled.border-end{
+    border-color: transparent!important;
+    border-bottom: 1px solid!important;
+    border-bottom-color: #ffffff50!important;
+}
+
+nav ul li a{
+    position: relative;
+}
+
+nav ul li a:after{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 0%;
+    content: '.';
+    color: transparent;
+    background: #aaa;
+    height: 1px;
+}
+
+nav ul li a:hover:after {
+    width: 100%;
+}
+
+nav ul li a,
+nav ul li a:after {
+    transition: all .5s;
+}
+
+nav ul p:after{
+    content: '';
+    display: block;
+    position: relative;
+    left: 50%;
+    width: 33%;
+    height: 1px;
+    transform: translate(-50%, -50%);
+    background: #aaa;
+    margin-top: 6px;
+}
+
+/* CGUV */
+main.CGUV ul, main.private-policy{
+    margin-top: -16px;
+}
+
+/* Privacy-policy */
+
+main.privacy-policy p a{
+    color: #49388b!important;
+}
+main.privacy-policy p a.text-dark{
+    color: #212529!important;
+}
+
+/* Store */
+main div.container div.d-flex div.block-article{
+    min-height: 620px;
+}
+
+/* Article */
+main.bg-article{
+    background: rgb(224,224,224);
+    background: -moz-linear-gradient(0deg, rgba(224,224,224,1) 0%, rgba(255,255,255,1) 100%);
+    background: -webkit-linear-gradient(0deg, rgba(224,224,224,1) 0%, rgba(255,255,255,1) 100%);
+    background: linear-gradient(0deg, rgba(224,224,224,1) 0%, rgba(255,255,255,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#e0e0e0",endColorstr="#ffffff",GradientType=1);
+
+    min-height: 565px;
+}
+
+main.bg-article div.d-flex div.unknown, main.container.customer-account{
+    min-height: 565px;
+    max-height: 100%;
+}
+
+main.bg-article div.d-flex div.unknown i{
+    font-size: 25rem;
+}
+
+p.quantityUp{
+    background-color: #bfc21e;
+    box-shadow: 0px 0px 10px 0px #00000021
+}
+
+p.quantityDown{
+    background-color: #C24B13;
+    box-shadow: 0px 0px 10px 0px #00000021
+}
+
+nav span i.fa-solid.fa-chevron-right{
+    font-size: 0.9rem!important;
+}
+
+/* Mon compte */
+a.card-perso{
+    min-height: 180px!important;
+    max-height: 180px!important;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    transition: box-shadow 1.5s cubic-bezier(.39,.58,.57,1);
+}
+
+a.card-perso:hover{
+    box-shadow: inset 0px 0px 10px 2px #00000073!important;
+}
+
+a.card-perso div h3{
+    font-weight: bold!important;
+    font-size: 1.5rem!important;
+}
+
+@media screen and (min-width: 768px) {
+
+    ul.list-unstyled.border-end{
+        border-color: #ffffff50!important;
+        border-bottom: transparent!important;
+    }
+
+}
+
+/* Panier */
+
+main div table thead tr th.w-20{
+    max-width: 20%;
+}
+
+main div table tbody img{
+    width: 60px!important;
+}
+
+/* ADMIN */
+
+/* admin-panel */
+main.admin-panel{
+    min-height: 853px;
+}
+main.admin-panel div nav{
+    background-color: #31255f;
+}
+
+/* Admin-articles */
+
+main.container-fluid.p-0 div.title-area a.btn{
+    color: #fff;
+    background-color: #664cce;
+    min-width: 160px;
+    max-width: 100%;
+    transition: all 0.2s cubic-bezier(.4,0,.2,1);
+    border: none;
+}
+
+main.container-fluid.p-0 div.title-area a.btn:hover{
+    transform: translateY(-1px);
+    background-color: #5237bd ;
+    box-shadow: inset 0 -4px 0 0 rgba(0, 0, 0, 0.25);
+}
+
+/* Création d'une classe pour le bg HOVER + CURSOR via JS des lignes du tableau */
+div.table-responsive table tbody tr .is-hover{
+    cursor: pointer;
+    background-color: #2125291f!important;
+    transition: all 0.15s ease-in-out;
+}
+
+/* largeur mini pour les boutons des lignes du tableau + la transition */
+div.table-responsive table tbody tr a{
+    min-width: 50px;
+    transition: all 0.2s cubic-bezier(.4,0,.2,1);
+}
+
+/* animation HOVER des boutons */
+ .btn-tr:hover{
+    transform: translateY(-1px);
+    background-color: #2125291f!important;
+    box-shadow: inset 0 -2px 0 0 rgba(0,0,0,0.2);
+}
+
+/* animation HOVER & ACTIVE des boutons */
+ .btn-tr:hover:active{
+    background-color: #21252927;
+    transform: translateY(0px);
+    box-shadow: inset 0 2px 0 0 rgba(0,0,0,0.2);
+}
+
+/* Retrait de la bordure BOOTSTRAP a l'ACTIVE du bouton */
+.btn-tr:active{
+    border: transparent!important;
+}
+
+/* style CHECKBOX pour UPDATE & CREATE article */
+.form-check-input:checked{
+    background-color: #49388b!important;
+    border-color: #31255f!important;
+}
+.form-check-input:focus{
+    box-shadow: 0 0 0 .25rem #5237bd40!important;
+}

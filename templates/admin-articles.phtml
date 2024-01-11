@@ -1,0 +1,66 @@
+<?php if (!isset($_SESSION['admin'])) : ?>
+    <?php header('Location: /');
+    exit() ?>
+<?php else : ?>
+
+    <main class="container-fluid p-0">
+        <?php if ($flashMessage) : ?>
+            <div class="alert alert-success text-center pt-3 pb-4"><?= htmlspecialchars($flashMessage); ?></div>
+        <?php endif; ?>
+        <div class="text-center pt-3 d-flex flex-column justify-content-center">
+            <h2 class="my-4">Tous les articles</h2>
+            <div class="title-area align-self-start">
+                <a href="/admin-panel/articles/nouvel-article" class="m-2 h-75 btn p-3 text-center d-flex justify-content-evenly align-items-center"><i class="fa-solid fa-plus pe-2 fs-6"></i>Ajouter un produit</a>
+            </div>
+        </div>
+        <div class="table-responsive">
+            <table class="table">
+                <thead class="table-success">
+                    <tr class="text-center">
+                        <th scope="col">ID</th>
+                        <th scope="col">Nom</th>
+                        <th scope="col">Quantité</th>
+                        <th scope="col">Prix(€)</th>
+                        <th scope="col">Catégorie</th>
+                        <th scope="col">Pays d'origine</th>
+                        <th scope="col">Mis en avant</th>
+                        <th scope="col">Actif</th>
+                        <th scope="col">Suppr.</th>
+                    </tr>
+                </thead>
+                <tbody class="table-group-divider align-middle">
+                    <?php foreach ($articles as $article) : ?>
+                        <tr id="<?php echo $article->getArticleId() ?>">
+                            <th class="text-center hovered" scope="row"><?php echo htmlspecialchars($article->getArticleId()); ?></th>
+                            <td class="hovered"><?php echo htmlspecialchars($article->getArticleName()); ?></td>
+                            <td class="text-center hovered"><?php echo htmlspecialchars($article->getArticleQuantity()); ?></td>
+                            <td class="text-center hovered"><?php echo htmlspecialchars((number_format($article->getArticlePrice(), 2, ',', ' '))); ?></td>
+                            <td class="text-center hovered"><?php echo htmlspecialchars($article->getCategory()->getCategoryName()) ?></td>
+                            <td class="text-center hovered"><?php echo htmlspecialchars($article->getNativeCountry()->getNativeCountryName()) ?></td>
+                            <td class="text-center hovered">
+
+                                <?php if ($article->getArticleSpotlight() == 1)
+                                    echo '<a href="/admin-panel/articles?id=' . $article->getArticleId() . '&spotlight=' . $article->getArticleSpotlight() . '" class="btn btn-tr"><i class="text-success fa-solid fa-check"></i></a>';
+                                else
+                                    echo '<a href="/admin-panel/articles?id=' . $article->getArticleId() . '&spotlight=' . $article->getArticleSpotlight() . '" class="btn btn-tr"><i class="text-danger fa-solid fa-xmark"></i></a>';
+                                ?>
+
+                            </td>
+                            <td class="text-center hovered">
+
+                                <?php if ($article->getArticleIsActive() == 1)
+                                    echo '<a href="/admin-panel/articles?id=' . $article->getArticleId() . '&active=' . $article->getArticleIsActive() . '" class="btn btn-tr"><i class="text-success fa-solid fa-check"></i></a>';
+                                else
+                                    echo '<a href="/admin-panel/articles?id=' . $article->getArticleId() . '&active=' . $article->getArticleIsActive() . '" class="btn btn-tr"><i class="text-danger fa-solid fa-xmark"></i></a>';
+                                ?>
+
+                            </td>
+                            <td class="text-center hovered">
+                                <a href="/admin-panel/articles?id=<?= intval($article->getArticleId()) ?>&delete=1" class="btn btn-tr"><i class="fa-solid fa-trash text-danger"></i></a>
+                            </td>
+
+                        </tr>
+                    <?php endforeach; ?>
+                <?php endif; ?>
+                </tbody>
+            </table>
